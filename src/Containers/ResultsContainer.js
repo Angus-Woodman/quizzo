@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 
 class ResultsContainer extends Component {
+    // you're not making use of any class component benefits here
+    // refactor to functional? Or perhaps better, remove some of this logic from the render and make class methods.
     render(){
 
-        const numOfPlayers = this.props.state.score.length;
+        const numOfPlayers = this.props.state.score.length; 
+        // A prop called state is not a great naming convention
         const nameAndScore = []
 
         for (let i = 0; i < numOfPlayers; i++){

@@ -1,3 +1,6 @@
+// For readability and traceability, it would be nice to have more compact imports eg.:
+// import { InputContainer, QuestionContainer, ResultsContainer } from './Containers';
+// import { Error404, InstructionsComponent } from './Components';
 import React from "react";
 import InputContainer from "./Containers/InputContainer";
 import AnchorLink from "react-anchor-link-smooth-scroll";
@@ -24,31 +27,34 @@ class App extends React.Component {
   snapState = { ...this.state };
 
   resetState = () => {
+    // Interesting solution! Rather like an initState idea in a reducer
     this.setState({ ...this.snapState })
   };
 
   handleToUpdate(someArg) {
+    // Nice abstraction
     this.setState((prevState) => ({
       players: [...prevState.players, someArg],
     }));
   }
 
   finalScore = (score) => {
+    // You could use destructuring here if you like: this.setState({ score });
     this.setState({ score: score });
   };
 
-
+  // could these two methods be combined into eg. a 'toggleModal'?
   handleOpenModal = () => {
     this.setState({ showModal: true });
   }
   handleCloseModal = () => {
     this.setState({ showModal: false });
   }
+
   deletePlayer = (index) => {
     const newPlayers = [...this.state.players];
     newPlayers.splice(index, 1)
     this.setState({ players: newPlayers })
-
   }
 
   render() {
@@ -56,8 +62,9 @@ class App extends React.Component {
       <>
         <nav>
           <button onClick={() => {
+            // this works, it would be nice to see it in a React modal
             if (window.confirm("Are you sure? Going home will end current quiz!")) {
-
+              // this is a lot of logic to be in your return. Abstract to a class method?
               this.setState({ score: [] }, () => {
                 this.resetState();
 
@@ -89,6 +96,7 @@ class App extends React.Component {
             path="/"
             render={() => (
               <>
+                {/* Way too much logic to go in a route render - make this a component! */}
                 <section id="welcomePage">
                   <h1>TriviaBoss</h1>
                   <h3><em>The quiz where everyone's an expert!</em></h3>

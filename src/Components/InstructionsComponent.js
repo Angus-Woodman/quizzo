@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class InstructionsComponent extends Component {
-
+    // this really doesn't need to be a class component
     render() {
         return (
             <>

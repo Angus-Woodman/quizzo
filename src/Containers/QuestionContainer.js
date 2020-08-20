@@ -24,6 +24,7 @@ class QuestionContainer extends Component {
 
   componentWillUnmount() {
     this.props.finalScore(this.state.score);
+    // Not needed. If the component is unmounting, when it mounts again, the state will be as dictated on ln. 9 regardless
     this.resetState();
   }
 
@@ -41,6 +42,8 @@ class QuestionContainer extends Component {
       ) {
         this.setState((prev) => ({ questionCount: ++prev.questionCount }));
       } else if (this.state.playerCount + 1 < this.state.players.length) {
+        // why are these in separate setState calls?
+        // this.setState((prev) => ({ playerCount: ++prev.playerCount, questionCount: 0 });
         this.setState({ questionCount: 0 });
 
         this.setState((prev) => {
@@ -97,12 +100,13 @@ class QuestionContainer extends Component {
     //It's running everything twice?
     //counter = counter + 1;
     if (this.state.redirect){
+      {/* why is this here instead of using history on ln. 53? */}
       return (
         <div>
           <Redirect to="/results"/>
         </div>
       )
-    } else {
+     } else {  // <- this curly is reduntent and rendering line 136 useless. 
       if (this.state.questionCount === 0) {
         return (
           <div>
@@ -130,6 +134,8 @@ class QuestionContainer extends Component {
           </div>
         )
       } else {
+        // you never hit this statement due to the syntax error on ln. 109
+        // this seems to be a duplicate of the above anyway so either should be deleted or the syntax issue fixed and this duplicate logic abstracted into a method/component
         return (
           <div>
             <QuestionComponent

@@ -2,6 +2,10 @@
 import React, { Component } from 'react';
 
 class QuestionComponent extends Component {
+  // Is all this logic supposed to run on each render?
+  // If so, a functional component is more appropriate, 
+  // if not, refactor to make use of class component features.
+
   render() {
     // Create randomised array of answers
     let ansArr = [...this.props.incorrect_answers, this.props.correct_answer];

@@ -29,6 +29,11 @@ class InputContainer extends Component {
 
     let category;
 
+    // could this be a collection you reference instead?
+    // const topics = [{ name: "general knowledge", id: 9 }, { name: "sports", id: 21 }]
+    // const category = topics.find(t => t.name === this.state.topic).id
+    // also, is it possible to get this data from the API instead of hard-coded?
+
     switch (this.state.topic) {
       case "general knowledge":
         category = 9;
@@ -150,6 +155,7 @@ class InputContainer extends Component {
               defaultValue="Hello"
               onChange={this.handleInput}
             >
+              {/* as above (see ln.32), could store this data in a collection and iterate here */}
               <option value="animals">Animals</option>
               <option value="celebrities">Celebritites</option>
               <option value="films">Films</option>
@@ -195,6 +201,10 @@ class InputContainer extends Component {
             })}
           </ol>
         </div>
+        
+        {/* if using 'null' in a ternary, you may want to use a && instead
+          {(this.props.players.length !== 0) && <>show this</>
+         */}
         {this.props.players.length !== 0 ?
           <NavLink to="/questions">
             <button>Start</button>
